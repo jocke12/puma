@@ -27,7 +27,7 @@ Capistrano::Configuration.instance.load do
 
     desc 'Restart puma'
     task :restart, :roles => lambda { fetch(:puma_role) }, :on_no_matching_servers => :continue do
-      run "cd #{current_path} && #{fetch(:pumactl_cmd)} -S #{state_path} restart"
+      run "cd #{current_path} && BUNDLE_GEMFILE=#{current_path}/Gemfile #{fetch(:pumactl_cmd)} -S #{state_path} restart"
     end
   end
 
